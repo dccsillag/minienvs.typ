@@ -7,6 +7,9 @@
   no-numbering: (
     proof: true,
   ),
+  head-style: (
+    proof: it => [_#{it}_],
+  ),
   transforms: (
     proof: it => [#it $space qed$],
   )
@@ -59,17 +62,19 @@
   c.step()
   locate(loc => _current.update((head: head, count: c.at(loc))))
 
-  [*#head*]
+  let head-format = config.head-style.at(kind, default: it => [*#{it}*])
+
+  head-format[#head]
   if not config.no-numbering.at(kind, default: false) {
-    [* #{c.display()}*]
+    head-format[ #{c.display()}]
   }
   if tail != none {
-    [*#tail*]
+    head-format[#tail]
   }
-  [*.*]
+  head-format[.]
 
   _current.update(none)
-  config.transforms.at(kind, default: it => it)([_#{term.description}_])
+  config.transforms.at(kind, default: it => [_#{it}_])([#{term.description}])
 }
 
 #let minienvs(doc, config: auto) = {
