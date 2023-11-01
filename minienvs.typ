@@ -7,6 +7,7 @@
   no-numbering: (
     proof: true,
   ),
+  bbox: (:),
   head-style: (
     proof: it => [_#{it}_],
   ),
@@ -64,17 +65,18 @@
 
   let head-format = config.head-style.at(kind, default: it => [*#{it}*])
 
-  head-format[#head]
-  if not config.no-numbering.at(kind, default: false) {
-    head-format[ #{c.display()}]
-  }
-  if tail != none {
-    head-format[#tail]
-  }
-  head-format[.]
-
-  _current.update(none)
-  config.transforms.at(kind, default: it => [_#{it}_])([#{term.description}])
+  block({
+    head-format[#head]
+    if not config.no-numbering.at(kind, default: false) {
+      head-format[ #{c.display()}]
+    }
+    if tail != none {
+      head-format[#tail]
+    }
+    head-format[.]
+    _current.update(none)
+    config.transforms.at(kind, default: it => [_#{it}_])([#{term.description}])
+  }, ..config.bbox.at(kind, default: ()))
 }
 
 #let minienvs(doc, config: auto) = {
@@ -84,7 +86,7 @@
   }
 
   show figure.where(kind: "minienv"): _ => []
-  show terms: (ts => _config.display(c => ts.children.map(t => block(_minienv(t, c))).join([])))
+  show terms: (ts => _config.display(c => ts.children.map(t => _minienv(t, c)).join([])))
   doc
 }
 
