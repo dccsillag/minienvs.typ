@@ -1,0 +1,7 @@
+[package]
+name = "minienvs"
+version = "0.1.0"
+entrypoint = "minienvs.typ"
+authors = ["Daniel Csillag"]
+license = "MIT"
+description = "Theorem environments, the easy way"
