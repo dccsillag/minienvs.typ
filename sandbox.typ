@@ -1,4 +1,4 @@
-#import "./minienvs.typ": minienvs
+#import "./minienvs.typ": minienvs, envlabel
 #show: minienvs
 
 #set par(justify: true)
@@ -31,7 +31,7 @@ Hello World!
 
   bar
 
-/ Theorem:
+/ Theorem #envlabel(<theorem-a>):
   foo
 
 / Proof:
@@ -40,5 +40,5 @@ Hello World!
 / Proof:
   foo bar
 
-/ Proof (of theorem blah):
+/ Proof (of @theorem-a):
   ...
