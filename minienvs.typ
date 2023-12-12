@@ -12,7 +12,7 @@
     proof: it => [_#{it}_],
   ),
   transforms: (
-    proof: it => [#it $space qed$],
+    proof: it => [#it #h(1fr) $space qed$],
   )
 ))
 
