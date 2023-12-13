@@ -1,6 +1,6 @@
 # Minienvs
 
-Theorem environments in [Typst](typst.app) with minimal fuss.
+Theorem environments in [Typst](https://typst.app/) with minimal fuss.
 
 To use, import and add a show rule:
 
