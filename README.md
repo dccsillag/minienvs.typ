@@ -26,11 +26,10 @@ Let us now prove it:
   By the optional stopping theorem and the supermartingale convergence theorem, we have that
 
   $
-    EE[X_0]
-    &>= EE[X_N] \
+    EE[X_0] >= EE[X_N]
     &= EE[X_N | N < oo] PP[N < oo] + EE[X_oo | N = oo] PP[N = oo] \
-    &>= EE[X_N | N < oo] PP[N < oo] \
-    &= EE[X_N/a | N < oo] a PP[N < oo]. \
+    &>= EE[X_N | N < oo] PP[N < oo]
+    = EE[X_N/a | N < oo] a PP[N < oo]. \
   $
 
   And, therefore,
@@ -38,18 +37,22 @@ Let us now prove it:
   $ PP[N < oo] <= EE[X_0] \/ a EE[X_N/a | N < oo] <= EE[X_0] \/ a. $
 ```
 
+![](./assets/ville.png)
+
 ## Labels and references
 
 Currently, in order to label a minienv one needs to use the `envlabel` function. For example:
 
 ```typst
-/ Theorem (Hoeffding's inequality [symmetric case]) #envlabel(<hoeffding-inequality>):
-  Let $X_1, ..., X_n$ be independent random variables such that $a_i <= X_i <= b_i$ almost surely, and let $S = X_1 + dots.c + X_n$. Then, for all $epsilon > 0$,
+/ Lemma (Donsker and Varadhan's variational formula) #envlabel(<change-of-measure>):
+  For any measureable, bounded function $h : Theta -> RR$ we have:
 
-  $ PP[abs(S_n - EE[S_n]) >= epsilon] <= 2 exp(- (2 epsilon^2) / (sum_(i=1)^n (b_i - a_i)^2)). $
+  $ log EE_(theta ~ pi)[exp h(theta)] = sup_(rho in cal(P)(Theta)) [ EE_(theta~rho)[h(theta)] - KL(rho || pi) ]. $
 
-@ville-inequality can be seen as  generalization of Markov's inequality to the case of nonnegative supermartingales.
+As we will see, @change-of-measure is a fundamental building block of PAC-Bayes bounds.
 ```
+
+![](./assets/donsker-varadhan.png)
 
 ## Customization
 
