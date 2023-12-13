@@ -76,7 +76,7 @@
     head-format[.]
     _current.update(none)
     config.transforms.at(kind, default: it => [_#{it}_])([#{term.description}])
-  }, ..config.bbox.at(kind, default: ()))
+  }, width: 100%, ..config.bbox.at(kind, default: ()))
 }
 
 #let minienvs(doc, config: auto) = {
