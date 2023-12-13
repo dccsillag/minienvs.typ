@@ -1,6 +1,3 @@
-// BUG: typst watch sandbox.typ; edit something nontrivial in minienvs.typ (or in sandbox.typ, sometimes); document becomes blank;
-// Due to some errors, it looks like!
-
 #let _counter_prefix = "minienvs:"
 #let _current = state("minienvs:current", none)
 #let _config = state("minienvs:config", (
