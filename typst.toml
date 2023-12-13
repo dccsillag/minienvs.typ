@@ -2,6 +2,7 @@
 name = "minienvs"
 version = "0.1.0"
 entrypoint = "minienvs.typ"
+exclude = ["sandbox.typ", "*.pdf", "assets/*"]
 authors = ["Daniel Csillag"]
 license = "MIT"
 description = "Theorem environments, the easy way"
