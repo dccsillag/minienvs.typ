@@ -58,14 +58,14 @@
 
   let c = counter(_counter_prefix + kind)
   c.step()
-  locate(loc => _current.update((head: head, count: c.at(loc))))
+  context _current.update((head: head, count: c.get()))
 
   let head-format = config.head-style.at(kind, default: it => [*#{it}*])
 
   block({
     head-format[#head]
     if not config.no-numbering.at(kind, default: false) {
-      head-format[ #{c.display()}]
+      head-format[ #{context c.display()}]
     }
     if tail != none {
       head-format[#tail]
@@ -83,18 +83,21 @@
   }
 
   show figure.where(kind: "minienv"): _ => []
-  show terms: (ts => _config.display(c => ts.children.map(t => _minienv(t, c)).join([])))
+  show terms: (ts => ts.children.map(t => context _minienv(t, _config.get())).join([]))
   doc
 }
 
-#let envlabel(label) = locate(loc => _current.display(current => [
-  #if current == none {
+#let envlabel(label) = context {
+  let current = _current.get()
+  if current == none {
     panic("`envlabel` used out-of-place. Must be used within the head of a minienv")
   }
-  #let relevant_counter = counter(figure.where(kind: "minienv"))
-  #let saved_count = relevant_counter.at(loc)
-  #relevant_counter.update((current.count.at(0) - 1, ..current.count.slice(1, none)))
-  #figure([], gap: 0pt, placement: none, kind: "minienv", supplement: current.head)
-  #label
-  #relevant_counter.update(saved_count)
-]))
+  let relevant_counter = counter(figure.where(kind: "minienv"))
+  let saved_count = relevant_counter.get()
+  relevant_counter.update((current.count.first() - 1, ..current.count.slice(1, none)))
+  context [
+    #figure([], gap: 0pt, placement: none, kind: "minienv", supplement: current.head)
+    #label
+  ]
+  relevant_counter.update(saved_count)
+}
