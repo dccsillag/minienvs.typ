@@ -6,3 +6,4 @@ exclude = ["sandbox.typ", "*.pdf", "assets/*"]
 authors = ["Daniel Csillag"]
 license = "MIT"
 description = "Theorem environments with minimal fuss"
+repository = "https://github.com/dccsillag/minienvs.typ"
