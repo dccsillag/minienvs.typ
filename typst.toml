@@ -1,6 +1,6 @@
 [package]
 name = "minienvs"
-version = "0.1.0"
+version = "0.1.1"
 entrypoint = "minienvs.typ"
 exclude = ["sandbox.typ", "*.pdf", "assets/*"]
 authors = ["Daniel Csillag"]
