@@ -35,7 +35,7 @@ Let us now prove it:
 
 #v(5em)
 
-/ Lemma (Donsker and Varadhan's variational formula) #envlabel(<change-of-measure>):
+/ Lemma (Donsker and Varadhan's variational formula)#envlabel(<change-of-measure>):
   For any measureable, bounded function $h : Theta -> RR$ we have:
 
   $ log EE_(theta ~ pi)[exp h(theta)] = sup_(rho in cal(P)(Theta)) [ EE_(theta~rho)[h(theta)] - KL(rho || pi) ]. $
@@ -68,7 +68,7 @@ Hello World!
 
   bar
 
-/ Theorem #envlabel(<theorem-a>):
+/ Theorem#envlabel(<theorem-a>):
   foo
 
 / Proof:
